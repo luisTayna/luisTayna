@@ -1,66 +1,55 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img src="assets/banner-light.svg" width="100%" alt="Jose Luis Quispe Tayña — Backend / Full-Stack Developer · Cusco, Perú">
-</picture>
-
-Construyo **sistemas que están en producción** y me importa poder demostrar que funcionan: datos que no se corrompen, accesos que fallan de forma segura y cambios respaldados por pruebas. Egresado de Ingeniería Informática y de Sistemas en la **UNSAAC**.
-
-**Ahora mismo:** desarrollo el *Centro Electoral Cusco*, una plataforma para el control de personeros, actas y resultados.
-
-## Proyectos
-
-<table>
-  <tr>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/card-electoral-dark.svg">
-        <img src="assets/card-electoral-light.svg" width="100%" alt="Centro Electoral Cusco">
-      </picture>
-    </td>
-    <td width="50%">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/card-noretel-dark.svg">
-        <img src="assets/card-noretel-light.svg" width="100%" alt="NoreTel CRM">
-      </picture>
-    </td>
-  </tr>
-</table>
-
-<details>
-<summary><b>Qué resolví en cada uno</b></summary>
-<br>
-
-**Centro Electoral Cusco** — Coordinar personeros en toda una región exige saber, en todo momento, quién cubre cada mesa y qué acta es la vigente. Modelé el acceso por rol *y* por territorio (región, provincia, distrito) de modo que un coordinador sin alcance válido no vea nada, y diseñé el historial de actas y asignaciones para que nunca se borre: una corrección crea una versión nueva.
-
-**NoreTel CRM** — La empresa validaba a mano cada captura de pago que llegaba por WhatsApp. Integré una pasarela de mensajería, lectura OCR y conciliación contra la notificación bancaria, y medí el resultado: el cierre automático pasó de 48 % a 100 %. Luego blindé la facturación contra el doble cobro con una verificación dentro de la transacción y bloqueo de fila, y cerré una auditoría de seguridad y rendimiento con pruebas que fallaban antes de cada corrección.
-
-<sub>El código de ambos es privado porque son sistemas en uso. Con gusto lo muestro en una entrevista.</sub>
-</details>
-
-También colaboré en sistemas web con Laravel 12 para **gestión comunal** (asistencia por QR, caja y actas), **ferretería** (inventario y kardex) y **control de asistencias**.
-
-## Con qué trabajo
-
-| | En producción | Lo uso para |
-|---|---|---|
-| **Backend** | Laravel · PHP 8 · Node.js · NestJS · Python | servicios, APIs REST, webhooks, integraciones |
-| **Frontend** | Next.js · React · TypeScript · Tailwind | paneles administrativos y PWA |
-| **Datos** | MySQL · PostgreSQL · Prisma | transacciones, índices, migraciones versionadas |
-| **Calidad** | PHPUnit · pruebas de integración · TDD | demostrar cada cambio antes de entregarlo |
-| **Infra** | Docker · Linux · cPanel · Git | despliegue y operación de servicios |
-
-## Cómo trabajo
-
-```text
-$ git log --oneline --author="luisTayna" -- principios/
-a3f91c2 perf: medir antes de optimizar (601 → 3 consultas, con prueba)
-7c04e5d fix(billing): la regla de negocio vive en la transacción, no en la pantalla
-2b8d6f1 fix(security): ocultar un botón no protege una ruta
-e51a9b0 test: una prueba que nunca falló no demuestra nada
-94d7c3e refactor: un solo lugar para cada decisión
+```
+        /\                      /\
+       /  \      /\            /  \    /\
+      /    \    /  \  /\      /    \  /  \        luis tayña
+  ___/      \__/    \/  \____/      \/    \___    cusco, perú
 ```
 
-<p>
-  <a href="mailto:luis113654@gmail.com"><img src="https://img.shields.io/badge/luis113654%40gmail.com-1f4e8c?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>
-  <img src="https://img.shields.io/badge/Cusco%2C%20Perú-30363d?style=flat-square&logo=googlemaps&logoColor=white" alt="Cusco, Perú">
-</p>
+Hola, soy Jose Luis. Hago backend, sobre todo con Laravel y últimamente con Next.js y TypeScript.
+Acabo de terminar la carrera de Ingeniería Informática y de Sistemas en la UNSAAC.
+
+Lo que más disfruto es meterle mano a sistemas que ya están en uso: entender por qué algo falla
+con datos reales y arreglarlo sin romper lo que ya funciona.
+
+### En qué ando
+
+Estoy armando el **Centro Electoral Cusco**, una plataforma para llevar el control de personeros,
+actas y resultados por región, provincia y distrito. Next.js 15, PostgreSQL y Prisma.
+Lo más entretenido ha sido el tema de permisos: un coordinador solo puede ver su territorio, y si
+algo no cuadra, el sistema no le muestra nada en vez de mostrarle todo.
+
+### Lo que hice antes
+
+Hice mis prácticas en **Noretel**, un proveedor de internet de Cusco, trabajando en su CRM (Laravel).
+Cuando llegué, cada pago por Yape se validaba a mano: alguien abría la captura que el cliente mandaba
+por WhatsApp y la comparaba con el celular de la empresa. Terminamos con una pasarela de WhatsApp,
+OCR para leer las capturas y una conciliación automática contra la notificación del banco.
+En agosto, los pagos por Yape ya se cerraban solos.
+
+También me tocó una auditoría de seguridad y rendimiento. Mi favorito: un reporte que hacía
+601 consultas a la base de datos para mostrar 20 facturas. Ahora hace 3.
+
+Ese código es privado porque es de la empresa, pero si te interesa te lo puedo mostrar.
+
+### Bugs que me enseñaron algo
+
+- **Clientes fantasma.** WhatsApp empezó a mandar un identificador interno (LID) en lugar del número
+  de teléfono, y el CRM lo guardaba como si fuera un celular. Desde ahí no confío en un dato externo
+  sin verificar de dónde viene.
+- **La factura que se cobraba dos veces.** Un mes escrito como `01/08/2026 al 31/08/2026` y otro como
+  `agosto 2026` eran, para el sistema, dos meses distintos. Lo resolví normalizando el periodo y
+  validándolo dentro de la misma transacción que crea la factura.
+- **`Undefined constant "key"`.** Un gráfico mezclaba una variable de JavaScript dentro de una directiva
+  de Blade. El reporte tiraba error 500 y nadie sabía por qué.
+- **La terminal que cualquiera podía usar.** La consola SSH de los routers solo pedía haber iniciado
+  sesión. Ahora pide un permiso y deja registro de cada comando.
+
+### Herramientas
+
+Uso a diario: Laravel, PHP, TypeScript, Next.js, MySQL, PostgreSQL, Git.
+Las he usado en algo real: Prisma, Docker, NestJS, Python, Tailwind, PHPUnit.
+Me falta mucho por aprender, pero me gusta escribir la prueba antes que el arreglo.
+
+---
+
+Si quieres conversar sobre algún proyecto o tienes una oportunidad, escríbeme a **luis113654@gmail.com**.
