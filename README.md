@@ -37,8 +37,6 @@ Ese código es privado porque es de la empresa, pero si te interesa te lo puedo 
   backend en Go con Gin, frontend en Next.js, landing en Astro y MongoDB. Sigue en desarrollo.
 - **Una red social universitaria** para un curso de Ingeniería de Software (React, Node.js con Express
   y MariaDB). Me tocó el módulo de publicaciones.
-- **Mi tesis**: una app móvil que reconoce billetes peruanos con la cámara y los anuncia por voz, para
-  personas con discapacidad visual. Estoy comparando modelos ligeros para que funcione sin internet.
 - En los cursos de IA comparé redes para clasificar gestos de piedra, papel o tijera (MobileNetV2 ganó con
   93,65 %, probando con fotos mías y del conjunto original) y probé un clasificador cuántico con Qiskit
   contra un SVM. Quedó 63 % contra 61 %: interesante como experimento, nada más.
